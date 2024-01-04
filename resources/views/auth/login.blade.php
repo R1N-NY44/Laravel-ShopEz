@@ -54,18 +54,24 @@
             </div>
 
             <!-- Forgot Password -->
-            <div class="flex items-center justify-center mt-4">
+            <div class="flex items-center mt-4">
                 @if (Route::has('password.request'))
                     <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
-                        {{ __('Forgot your password?') }}
+                        {{ __('Lupa Password?') }}
                     </a>
                 @endif
             </div>
 
+             <div class="my-4 flex items-center before:mt-0.5 before:flex-1 before:border-t before:border-neutral-300 after:mt-0.5 after:flex-1 after:border-t after:border-neutral-300">
+                <p class="mx-4 mb-0 text-center font-semibold dark:text-black">
+                Or
+                </p>
+            </div>
+
             <!-- Belum punya akun? -->
             <div class="flex items-center justify-center mt-2">
-                <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 mr-1"> belum punya akun?</a>
-                <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
+                <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 mr-1"> Baru di ShopEasy?</a>
+                <a class="underline text-sm text-[#c4a7a7] hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
                     {{ __(' Register here') }}
                 </a>
             </div>
