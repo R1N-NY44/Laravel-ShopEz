@@ -32,6 +32,22 @@ class AuthenticatedSessionController extends Controller
         return redirect()->intended(RouteServiceProvider::HOME);
     }
 
+    public function authenticate(Request $request)
+    {
+        $credentials = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required'
+        ]);
+
+        if(Auth::attempt($credentials)){
+            $request->session()->regenerate();
+
+            return redirect()->intended( auth()->user()->role != 'admin' ? '/' : '/admin/dashboard');
+        }
+
+        return back()->with('loginErr', 'Login failed, please check your email and password!');
+    }
+
     /**
      * Destroy an authenticated session.
      */

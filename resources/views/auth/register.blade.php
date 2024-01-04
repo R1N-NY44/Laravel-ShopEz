@@ -47,7 +47,7 @@
 
             <div class=" items-center justify-end mt-4">
 
-                <x-primary-button class=" bg-[#C4A7A7] from-gray-700 to-gray-900 font-medium md:p-4 text-white  uppercase w-full">
+                <x-primary-button class=" bg-[#c4a7a7] from-gray-700 to-gray-900 font-medium md:p-4 text-white  uppercase w-full">
                     {{ __('Register') }}
                 </x-primary-button>
 
