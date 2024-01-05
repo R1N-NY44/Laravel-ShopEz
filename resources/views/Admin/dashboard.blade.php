@@ -6,44 +6,63 @@
     </x-slot>
 
     <div class="py-12">
-        <div class="w-[1780px] mx-auto sm:px-6 lg:px-8 flex gap-16">
+        <div class="xl:w-[1280px] mx-auto sm:px-6 xl:px-8 grid grid-cols-1 xl:flex xl:justify-between gap-16 ">
+
             <div class="bg-white overflow-hidden shadow-lg sm:rounded-xl">
                 <div class="p-6 text-gray-900">
 
-                    <form action="#" method="GET">
+                    <form action="{{ route('product.create') }}" method="post" enctype="multipart/form-data">
+                        @csrf
                         <div class="flex gap-4">
                             <div class="w-[620px]">
-                                <input name="name" class="my-2 w-[100%] h-[50px] border border-[#292E3] bg-[#fff] placeholder-[#555555] pl-2" type="text" placeholder="Product Name">
-                                <input name="name" class="my-2 w-[100%] h-[50px] border border-[#292E3] bg-[#fff] placeholder-[#555555] pl-2" type="number" placeholder="Price">
+                                <input name="productName" value="{{ old('productName') }}" class="my-2 w-[100%] h-[50px] border border-[#292E3] bg-[#fff] placeholder-[#555555] pl-2" type="text" placeholder="Product Name" required>
+                                <input name="productPrice" value="{{ old('productPrice') }}" class="my-2 w-[100%] h-[50px] border border-[#292E3] bg-[#fff] placeholder-[#555555] pl-2" type="number" placeholder="Price" required>
                                 <div class="flex">
-                                    <input name="name" class="my-2 w-[50%] h-[50px] border border-[#292E3] bg-[#fff] placeholder-[#555555] pl-2" type="number" placeholder="Stock">
-                                    <input name="name" class="my-2 w-[50%] h-[50px] border border-[#292E3] bg-[#fff] placeholder-[#555555] pl-2" type="number" placeholder="Minim Order">
+                                    <input name="productStock" value="{{ old('productStock') }}" class="my-2 w-[50%] h-[50px] border border-[#292E3] bg-[#fff] placeholder-[#555555] pl-2" type="number" placeholder="Stock" required>
+                                    <input name="minimumOrder" value="{{ old('minimumOrder') }}" class="my-2 w-[50%] h-[50px] border border-[#292E3] bg-[#fff] placeholder-[#555555] pl-2" type="number" placeholder="Minim Order" required>
                                 </div>
-                                <textarea name="name" class="my-2 w-[100%] h-[150px] border border-[#292E3] bg-[#fff] placeholder-[#555555] pl-2" type="text" placeholder="Description"></textarea>
+                                <textarea name="productDescription" class="my-2 w-[100%] h-[150px] border border-[#292E3] bg-[#fff] placeholder-[#555555] pl-2" type="text" placeholder="Description" required>{{ old('productDescription') }}</textarea>
+                                @error('productDescription')
+                                    <span class="flex items-center font-medium tracking-wide text-red-500 ml-1">
+                                        {{ $message }}
+                                    </span>
+                                @enderror
+
                                 <div class="flex items-center">
                                     <label for="condition">Condition : &nbsp;</label>
-                                    <input type="radio" name="condition" value="0" id="condition-New">
+                                    <input type="radio" name="productCondition" value="baru" id="condition-New" @if (old('productCondition') == 'baru') ? checked @endif>
                                     <label for="condition-New" class="ml-1">New</label>
-                                    <input type="radio" name="condition" value="1" id="condition-Second" class="ml-4">
+                                    <input type="radio" name="productCondition" value="bekas" id="condition-Second" class="ml-4" @if (old('productCondition') == 'bekas') ? checked @endif>
                                     <label for="condition-Second" class="ml-1">Second</label>
                                 </div>
+                                @error('productCondition')
+                                    <span class="flex items-center font-medium tracking-wide text-red-500 ml-1">
+                                        {{ $message }}
+                                    </span>
+                                @enderror
                             </div>
                             <div>
-                                <label for="logo_umkm">Logo UMKM:</label>
-                                <input type="file" name="logo_umkm" id="logo_umkm" class="w-full" onchange="previewImage()">
+                                <label for="product_image">Product Image:</label>
+                                <input type="file" name="productIcon" id="product_image" accept="image/*" class="w-full" onchange="previewImage()">
+                                @error('productIcon')
+                                    <span class="flex items-center font-medium tracking-wide text-red-500 ml-1">
+                                        {{ $message }}
+                                    </span>
+                                @enderror
+
                                 <div id="image-preview" class="hidden">
                                     <h2 class="font-bold mt-4">Preview Logo:</h2>
                                     <img id="preview" src="" alt="Preview" class="mx-2 max-w-xs">
                                 </div>
                             </div>
                         </div>
-                        <button class="mt-8 text-[#E1B168] px-7 py-3 flex items-center border-2 border-[#E1B168]">Add Product</button>
+                        <button type="submit" class="mt-8 text-[#E1B168] px-7 py-3 flex items-center border-2 border-[#E1B168]">Add Product</button>
                     </form>
                 </div>
 
             </div>
 
-            <div class="bg-white w-[700px] overflow-y-auto shadow-lg hidden-scrol sm:rounded-lg">
+            <div class="bg-white xl:w-[700px] overflow-y-auto shadow-lg hidden-scrol sm:rounded-lg">
                 <table class="border-collapse table-auto w-full text-sm  relative">
                     <thead class="sticky top-0 bg-slate-950/70 backdrop-blur-sm">
                     <tr>
@@ -67,16 +86,16 @@
                     @else
                         @foreach ($data_produk as $data)
                         <tr>
-                            <td class="border-b border-slate-100 p-4 pl-8 text-slate-500"><img class="h-24 rounded-lg" src="{{Storage::url($data->logo_umkm)}}" alt=""></td>
-                            <td class="border-b border-slate-100 p-4 pl-8 text-slate-500">{{ $data->nama_umkm }}</td>
+                            <td class="border-b border-slate-100 p-4 pl-8 text-slate-500"><img class="h-24 rounded-lg" src="{{ asset('storage/' .$data->productIcon) }}" alt=""></td>
+                            <td class="border-b border-slate-100 p-4 pl-8 text-slate-500">{{ $data->productName }}</td>
                             <td class="border-b border-slate-100 p-4 pr-8 text-slate-500 flex flex-col">
                                 <a href="" class="py-1 text-center font-semibold text-sm bg-green-400 text-white rounded-full shadow-sm mb-2">View</a>
-                                <a href="umkm/{{$data->id}}/edit" class="py-1 text-center font-semibold text-sm bg-cyan-500 text-white rounded-full shadow-sm mb-2">Edit</a>
-                                <form action="{{ route("umkm.destroy", $data) }}" method="POST" class="delete-form w-full">
+                                <a href="/product/{{$data->id}}/edit" class="py-1 text-center font-semibold text-sm bg-cyan-500 text-white rounded-full shadow-sm mb-2">Edit</a>
+                                <form action="{{ route("product.destroy", $data) }}" method="POST" class="delete-form w-full">
                                     @csrf
                                     @method("DELETE")
-                                <button value="{{ $data->nama_umkm }}" class="w-full delete-button py-1 text-center font-semibold text-sm bg-red-400 text-white rounded-full shadow-sm mb-2">Delete</button>
-                            </form>
+                                    <button value="{{ $data->productName }}" class="w-full delete-button py-1 text-center font-semibold text-sm bg-red-400 text-white rounded-full shadow-sm mb-2">Delete</button>
+                                </form>
                             </td>
                         </tr>
                         @endforeach
@@ -92,7 +111,7 @@
     </div>
     <script>
         function previewImage() {
-            var input = document.getElementById('logo_umkm');
+            var input = document.getElementById('product_image');
             var preview = document.getElementById('preview');
             var imagePreview = document.getElementById('image-preview');
 
@@ -156,13 +175,13 @@
 
         // Tambahkan event listener ke setiap tombol hapus
         deleteButtons.forEach(function(button) {
-            const nama_umkm = button.value;
+            const nama_produk = button.value;
             button.addEventListener('click', function(e) {
                 // Tampilkan konfirmasi SweetAlert
                 e.preventDefault();
                 Swal.fire({
                     title: 'Konfirmasi',
-                    text: `Apakah Anda yakin ingin menghapus umkm ${nama_umkm}?`,
+                    text: `Apakah Anda yakin ingin menghapus produk ${nama_produk}?`,
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#d33',
@@ -177,5 +196,5 @@
                 });
             });
         });
-        </script>
+    </script>
 </x-app-layout>

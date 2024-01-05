@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -20,9 +21,22 @@ class ProductController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $createProduct = $request->validate([
+            'productName' => 'required|max:255',
+            'productPrice' => 'required',
+            'productStock' => 'required',
+            'productDescription' => 'required|max:255',
+            'productCondition' => 'required',
+            'productIcon' => 'required|image',
+            'minimumOrder' => 'required'
+        ]);
+        $createProduct['productIcon'] = $request->file('productIcon')->store('product-images');
+        
+        Product::create($createProduct);
+
+        return redirect()->back()->with('success', 'Product berhasil ditambahkan');
     }
 
     /**
@@ -46,7 +60,9 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        return view('Admin.editProduct', [
+            'product' => Product::find($product->id)
+        ]);
     }
 
     /**
@@ -54,14 +70,38 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        $updateProduct = $request->validate([
+            'productName' => 'required|max:255',
+            'productPrice' => 'required',
+            'productStock' => 'required',
+            'productDescription' => 'required|max:255',
+            'productCondition' => 'required',
+            'productIcon' => 'nullable|image',
+            'minimumOrder' => 'required'
+        ]);
+
+        if($request->file('productIcon')) {
+            if($request->old_image) {
+                Storage::delete($request->old_image);
+            }
+            $updateProduct['productIcon'] = $request->file('productIcon')->store('product-images');
+        }
+
+        Product::where('id', $product->id)->update($updateProduct);
+
+        return redirect('/admin/dashboard')->with('success', 'Berhasil update produk');
     }
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(Product $product)
-    {
-        //
+    {        
+        if($product->productIcon){
+            Storage::delete($product->productIcon);
+        };
+        
+        Product::destroy($product->id);
+        return redirect()->back();
     }
 }

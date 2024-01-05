@@ -21,7 +21,7 @@ Route::get('/', function () {
 
 Route::get('/cart', function () {
     return view('cart');
-});
+})->name('cart');
 
 Route::get('/detail', function () {
     return view('productDetails');
@@ -37,6 +37,13 @@ Route::middleware('auth')->group(function () {
 
     // admin
     Route::get('/admin/dashboard', [ProductController::class, 'index'] )->name('dashboard');
+
+    // product
+    Route::post('/product/create', [ProductController::class, 'create'])->name('product.create');
+    Route::get('/product/{product}/edit', [ProductController::class, 'edit']);
+    Route::put('/product/{product}', [ProductController::class, 'update'])->name('product.update');
+    Route::delete('/product/{product}', [ProductController::class, 'destroy'])->name('product.destroy');
+
 
 });
 
