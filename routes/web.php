@@ -39,9 +39,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/dashboard', [ProductController::class, 'index'] )->name('dashboard');
 
     // product
-    Route::post('/products/create', [ProductController::class, 'create']);
-    Route::get('/products/{product}/edit', [ProductController::class, 'edit']);
-    Route::delete('/products/{product}', [ProductController::class, 'destroy'])->name('product.destroy');
+    Route::post('/product/create', [ProductController::class, 'create'])->name('product.create');
+    Route::get('/product/{product}/edit', [ProductController::class, 'edit']);
+    Route::put('/product/{product}', [ProductController::class, 'update'])->name('product.update');
+    Route::delete('/product/{product}', [ProductController::class, 'destroy'])->name('product.destroy');
 
 
 });
