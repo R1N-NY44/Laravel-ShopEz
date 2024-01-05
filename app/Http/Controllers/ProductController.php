@@ -60,7 +60,9 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        return view('Admin.editProduct', [
+            'product' => Product::find($product->id)
+        ]);
     }
 
     /**
@@ -74,20 +76,20 @@ class ProductController extends Controller
             'productStock' => 'required',
             'productDescription' => 'required|max:255',
             'productCondition' => 'required',
-            'productIcon' => 'required|image',
+            'productIcon' => 'nullable|image',
             'minimumOrder' => 'required'
         ]);
 
         if($request->file('productIcon')) {
-            if($request->oldImage) {
-                Storage::delete($request->oldImage);
+            if($request->old_image) {
+                Storage::delete($request->old_image);
             }
             $updateProduct['productIcon'] = $request->file('productIcon')->store('product-images');
         }
 
         Product::where('id', $product->id)->update($updateProduct);
 
-        return back()->with('success', 'Berhasil update satu produk');
+        return redirect('/admin/dashboard')->with('success', 'Berhasil update produk');
     }
 
     /**
