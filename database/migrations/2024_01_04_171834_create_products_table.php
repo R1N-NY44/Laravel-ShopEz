@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->string('productName');
+            $table->string('productIcon');
             $table->integer('productPrice');
             $table->integer('productStock');
             $table->enum('productCondition', ['baru', 'bekas']);
