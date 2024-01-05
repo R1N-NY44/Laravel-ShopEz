@@ -99,7 +99,7 @@
                         <input name="size" x-model="selectedSize" value="Ukuran XXL" id="SizeXXL" class="peer/SizeXXL" type="radio" hidden>
                         <label  for="SizeXXL" class="peer-checked/SizeXXL:bg-[#C4A7A7] text-lg px-4 text-white bg-gray-400  rounded-full">XXL</label>
                     </div>
-
+                    <form action="">
                     {{-- Menampilkan pilihan ukuran dalam textarea --}}
                     <textarea class="w-full h-32 rounded-lg border-[#808080] text-[#808080] pl-1" name="catatan" id="" placeholder="Catatan :" x-text="'Catatan : ' + selectedSize"></textarea>
 
@@ -120,7 +120,9 @@
                         <input value="100000" id="price" type="number" hidden>
                         <input value="100" id="stock" type="number" hidden>
                         <input value="10" id="minimalOrder" type="number" hidden>
+                        <input  type="text" x-bind:value="Qty" hidden>
                         <button class="bg-[#C4A7A7] text-white text-2xl w-full py-3">Beli (<span x-text="Qty"></span>)</button>
+                    </form>
                     </div>
 
                 </div>
