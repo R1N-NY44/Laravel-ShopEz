@@ -28,7 +28,17 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $createCart = $request->validate([
+            'quantity' => 'required|max:255',
+            'purchaseNotes' => 'required|max:255'
+        ]);
+
+        $createCart['product_id'] = $request->product_id;
+        $createCart['user_id'] = auth()->user()->id;
+
+        Cart::create($createCart);
+
+        return redirect('/cart')->with('success', 'Produk berhasil ditambahkan ke keranjang');
     }
 
     /**

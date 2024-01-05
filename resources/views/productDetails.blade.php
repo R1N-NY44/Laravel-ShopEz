@@ -100,31 +100,32 @@
                         <input name="size" x-model="selectedSize" value="Ukuran XXL" id="SizeXXL" class="peer/SizeXXL" type="radio" hidden>
                         <label  for="SizeXXL" class="peer-checked/SizeXXL:bg-[#C4A7A7] text-lg px-4 text-white bg-gray-400  rounded-full">XXL</label>
                     </div>
-                    <form action="">
-                    {{-- Menampilkan pilihan ukuran dalam textarea --}}
-                    <textarea class="w-full h-32 rounded-lg border-[#808080] text-[#808080] pl-1" name="catatan" id="" placeholder="Catatan :" x-text="'Catatan : ' + selectedSize"></textarea>
 
+                    <form action="{{ route('cart.create') }}" method="post">
+                        @csrf
+                        {{-- Menampilkan pilihan ukuran dalam textarea --}}
+                        <textarea class="w-full h-32 rounded-lg border-[#808080] text-[#808080] pl-1" name="purchaseNotes" id="" placeholder="Catatan :" x-text="'Catatan : ' + selectedSize"></textarea>
 
+                        {{-- Divider --}}
+                        <div class="bg-[#808080] py-[0.8px] w-full my-6"></div>
 
-                    {{-- Divider --}}
-                    <div class="bg-[#808080] py-[0.8px] w-full my-6"></div>
+                        {{-- Total --}}
+                        <div class="flex justify-between text-[#808080] ">
+                            <h1 class="text-xl">Total</h1>
+                            <h1 class="text-xl">Rp. <span x-text="(price * Qty).toLocaleString('id-ID')"></span></h1>
+                        </div>
 
-                    {{-- Total --}}
-                    <div class="flex justify-between text-[#808080] ">
-                        <h1 class="text-xl">Total</h1>
-                        <h1 class="text-xl">Rp. <span x-text="(price * Qty).toLocaleString('id-ID')"></span></h1>
-                    </div>
-
-                    {{-- Checkout Button --}}
-                    <div class="flex justify-center mt-12">
-                        {{-- isi value dari databse --}}
-                        <input value="{{ $product->productPrice }}" id="price" type="number" hidden>
-                        <input value="{{ $product->productStock }}" id="stock" type="number" hidden>
-                        <input value="{{ $product->minimumOrder }}" id="minimalOrder" type="number" hidden>
-                        <input  type="text" x-bind:value="Qty" hidden>
-                        <button class="bg-[#C4A7A7] text-white text-2xl w-full py-3">Beli (<span x-text="Qty"></span>)</button>
+                        {{-- Checkout Button --}}
+                        <div class="flex justify-center mt-12">
+                            {{-- isi value dari databse --}}
+                            <input value="{{ $product->productPrice }}" id="price" type="number" hidden>
+                            <input value="{{ $product->productStock }}" id="stock" type="number" hidden>
+                            <input value="{{ $product->minimumOrder }}" id="minimalOrder" type="number" hidden>
+                            <input  type="hidden" name="product_id" value="{{ $product->id }}">
+                            <input  type="hidden" name="quantity" x-bind:value="Qty">
+                            <button type="submit" class="bg-[#C4A7A7] text-white text-2xl w-full py-3">Beli (<span x-text="Qty"></span>)</button>
+                        </div>
                     </form>
-                    </div>
 
                 </div>
             </div>
