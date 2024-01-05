@@ -89,7 +89,7 @@
                             <td class="border-b border-slate-100 p-4 pl-8 text-slate-500"><img class="h-24 rounded-lg" src="{{ asset('storage/' .$data->productIcon) }}" alt=""></td>
                             <td class="border-b border-slate-100 p-4 pl-8 text-slate-500">{{ $data->productName }}</td>
                             <td class="border-b border-slate-100 p-4 pr-8 text-slate-500 flex flex-col">
-                                <a href="" class="py-1 text-center font-semibold text-sm bg-green-400 text-white rounded-full shadow-sm mb-2">View</a>
+                                <a href="{{ route('product.show', $data->id) }}" class="py-1 text-center font-semibold text-sm bg-green-400 text-white rounded-full shadow-sm mb-2">View</a>
                                 <a href="/product/{{$data->id}}/edit" class="py-1 text-center font-semibold text-sm bg-cyan-500 text-white rounded-full shadow-sm mb-2">Edit</a>
                                 <form action="{{ route("product.destroy", $data) }}" method="POST" class="delete-form w-full">
                                     @csrf

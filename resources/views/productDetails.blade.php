@@ -8,17 +8,18 @@
 
             {{-- Foto barang Kiri --}}
             <div class="w-[440px]">
-                <img class="border rounded-xl" src="https://th.bing.com/th/id/OIP.dlqWFrXGLBg7-grHbQaqmQHaHa?w=800&h=800&rs=1&pid=ImgDetMain" alt="">
+                <img class="border rounded-xl" src="{{ asset('storage/' .$product->productIcon) }}" alt="">
             </div>
 
+            @php $harga = number_format($product->productPrice, 0, ',', '.'); @endphp
             {{-- Detail Barang Tengah--}}
             <div class="w-[640px] text-black">
-                <h1 class="text-4xl font-semibold">High School Uniform</h1>
-                <h1 class="text-5xl font-semibold mt-4" style="font-family: 'Almarai', sans-serif;">Rp. 100.000</h1>
+                <h1 class="text-4xl font-semibold">{{ $product->productName }}</h1>
+                <h1 class="text-5xl font-semibold mt-4" style="font-family: 'Almarai', sans-serif;">Rp. {{$harga}}</h1>
                 <div class="bg-[#D9D9D9] py-[1px] w-full mt-4 mb-3"></div>
-                <h1 class="text-xl text-[#6D7588] my-[1.5px]">Kondisi : <span class="text-[#212121]">Baru</span></h1>
-                <h1 class="text-xl text-[#6D7588] my-[1.5px]">Stok : <span class="text-[#212121]">100</span></h1>
-                <h1 class="text-xl text-[#6D7588] my-[1.5px] mb-4">Minimal Order : <span class="text-[#212121]">1</span></h1>
+                <h1 class="text-xl text-[#6D7588] my-[1.5px]">Kondisi : <span class="text-[#212121]">{{ $product->productCondition }}</span></h1>
+                <h1 class="text-xl text-[#6D7588] my-[1.5px]">Stok : <span class="text-[#212121]">{{ $product->productStock }}</span></h1>
+                <h1 class="text-xl text-[#6D7588] my-[1.5px] mb-4">Minimal Order : <span class="text-[#212121]">{{ $product->minimumOrder }}</span></h1>
                 <h1 class="text-justify overflow-y-auto">❝Sebelum melakukan Transaksi mohon dibaca terlebih dahulu
                     Deskripsi setiap Produk yang Kami Tawarkan❞
 
@@ -115,11 +116,11 @@
                     </div>
 
                     {{-- Checkout Button --}}
-                    <div class="flex justify-center mt-12">
+                                        <div class="flex justify-center mt-12">
                         {{-- isi value dari databse --}}
-                        <input value="100000" id="price" type="number" hidden>
-                        <input value="100" id="stock" type="number" hidden>
-                        <input value="10" id="minimalOrder" type="number" hidden>
+                        <input value="{{ $product->productPrice }}" id="price" type="number" hidden>
+                        <input value="{{ $product->productStock }}" id="stock" type="number" hidden>
+                        <input value="{{ $product->minimumOrder }}" id="minimalOrder" type="number" hidden>
                         <button class="bg-[#C4A7A7] text-white text-2xl w-full py-3">Beli (<span x-text="Qty"></span>)</button>
                     </div>
 

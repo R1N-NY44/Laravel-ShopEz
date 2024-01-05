@@ -39,6 +39,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/dashboard', [ProductController::class, 'index'] )->name('dashboard');
 
     // product
+    Route::get('/product-details/{product}', [ProductController::class, 'show'])->name('product.show');
     Route::post('/product/create', [ProductController::class, 'create'])->name('product.create');
     Route::get('/product/{product}/edit', [ProductController::class, 'edit']);
     Route::put('/product/{product}', [ProductController::class, 'update'])->name('product.update');

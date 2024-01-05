@@ -18,7 +18,7 @@ return new class extends Migration
             $table->integer('productPrice');
             $table->integer('productStock');
             $table->enum('productCondition', ['baru', 'bekas']);
-            $table->string('productDescription');
+            $table->text('productDescription');
             $table->integer('minimumOrder');
             $table->timestamps();
         });
