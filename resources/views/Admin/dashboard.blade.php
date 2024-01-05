@@ -6,7 +6,8 @@
     </x-slot>
 
     <div class="py-12">
-        <div class="w-[1780px] mx-auto sm:px-6 lg:px-8 flex gap-16">
+        <div class="xl:w-[1280px] mx-auto sm:px-6 xl:px-8 grid grid-cols-1 xl:flex xl:justify-between gap-16 ">
+
             <div class="bg-white overflow-hidden shadow-lg sm:rounded-xl">
                 <div class="p-6 text-gray-900">
 
@@ -61,7 +62,7 @@
 
             </div>
 
-            <div class="bg-white w-[700px] overflow-y-auto shadow-lg hidden-scrol sm:rounded-lg">
+            <div class="bg-white xl:w-[700px] overflow-y-auto shadow-lg hidden-scrol sm:rounded-lg">
                 <table class="border-collapse table-auto w-full text-sm  relative">
                     <thead class="sticky top-0 bg-slate-950/70 backdrop-blur-sm">
                     <tr>
