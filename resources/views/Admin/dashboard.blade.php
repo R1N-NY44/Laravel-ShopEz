@@ -86,7 +86,7 @@
                     @else
                         @foreach ($data_produk as $data)
                         <tr>
-                            <td class="border-b border-slate-100 p-4 pl-8 text-slate-500"><img class="h-24 rounded-lg" src="{{Storage::url($data->productIcon)}}" alt=""></td>
+                            <td class="border-b border-slate-100 p-4 pl-8 text-slate-500"><img class="h-24 rounded-lg" src="{{ asset('storage/' .$data->productIcon) }}" alt=""></td>
                             <td class="border-b border-slate-100 p-4 pl-8 text-slate-500">{{ $data->productName }}</td>
                             <td class="border-b border-slate-100 p-4 pr-8 text-slate-500 flex flex-col">
                                 <a href="" class="py-1 text-center font-semibold text-sm bg-green-400 text-white rounded-full shadow-sm mb-2">View</a>
