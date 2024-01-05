@@ -21,7 +21,7 @@ Route::get('/', function () {
 
 Route::get('/cart', function () {
     return view('cart');
-});
+})->name('cart');
 
 Route::get('/detail', function () {
     return view('productDetails');
@@ -37,7 +37,7 @@ Route::middleware('auth')->group(function () {
 
     // admin
     Route::get('/admin/dashboard', [ProductController::class, 'index'] )->name('dashboard');
-    
+
     // product
     Route::post('/products/create', [ProductController::class, 'create']);
     Route::get('/products/{product}/edit', [ProductController::class, 'edit']);
