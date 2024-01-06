@@ -45,16 +45,26 @@
                 <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
             </div>
 
-            <div class=" items-center justify-end mt-4">
+            <div class=" items-center justify-end my-4">
 
-                <x-primary-button class=" bg-[#c4a7a7] from-gray-700 to-gray-900 font-medium md:p-4 text-white  uppercase w-full">
+                <x-primary-button class=" bg-[#C2A7A7] from-gray-700 to-gray-900 font-medium md:p-4 text-white  uppercase w-full">
                     {{ __('Register') }}
                 </x-primary-button>
 
-                <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
-                    {{ __('Already registered?') }}
-                </a>
-                
+                <div class="my-4 flex items-center before:mt-0.5 before:flex-1 before:border-t before:border-neutral-300 after:mt-0.5 after:flex-1 after:border-t after:border-neutral-300">
+                    <p class="mx-4 mb-0 text-center font-semibold dark:text-black">
+                    Or
+                    </p>
+                </div>
+
+                <!-- Belum punya akun? -->
+                <div class="flex items-center justify-center my-2">
+                    <a class="text-lg text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 mr-1"> Sudah memilikii akun ?</a>
+                    <a class="underline text-lg text-[#C2A7A7] hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400" href="{{ route('login') }}">
+                        {{ __(' Login here') }}
+                    </a>
+                </div>
+
             </div>
         </form>
     </div>

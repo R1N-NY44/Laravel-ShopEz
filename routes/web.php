@@ -25,7 +25,7 @@ Route::get('/cart', [CartController::class, 'index'])->name('cart');
 Route::get('/detail', function () {
     return view('productDetails');
 });
-Route::get('/dashboard', function () {
+Route::get('/home', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
@@ -43,7 +43,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/product/{product}/edit', [ProductController::class, 'edit']);
     Route::put('/product/{product}', [ProductController::class, 'update'])->name('product.update');
     Route::delete('/product/{product}', [ProductController::class, 'destroy'])->name('product.destroy');
-    
+
     // cart
     Route::post('/carts', [CartController::class, 'store'])->name('cart.create');
 
