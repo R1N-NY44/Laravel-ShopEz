@@ -113,4 +113,11 @@ class ProductController extends Controller
         Product::destroy($product->id);
         return redirect()->back();
     }
+
+    public function getProduct()
+    {
+        $products = Product::all();
+
+        return response()->json($products, 200);
+    }
 }

@@ -76,4 +76,11 @@ class CartController extends Controller
     {
         //
     }
+
+    public function getCart()
+    {
+        $carts = Cart::with('product:id,productName,productPrice,productCondition')->select('product_id', 'quantity')->get();
+
+        return response()->json($carts, 200);
+    }
 }
