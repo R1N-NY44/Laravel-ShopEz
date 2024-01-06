@@ -1,7 +1,7 @@
 <x-app-layout>
-    
+
 <!-- Carousel slider -->
-<div id="default-carousel" class="relative mx-auto w-1/2 w-[95%] z-0" data-carousel="slide">
+<div id="default-carousel" class="relative mx-auto mt-12 w-[80%] z-0" data-carousel="slide">
     <!-- Carousel wrapper -->
     <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
          <!-- Item 1 -->
@@ -52,9 +52,9 @@
     </button>
 </div>
 <!-- Kolom Product -->
-<div class="bg-white">
+<div class="">
   <div class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
-  
+
     <h2 class="mb-10 font-bold text-3xl">PRODUCT</h2>
   <!-- kolom product baris 1 -->
     <div class="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 relative">
@@ -107,73 +107,22 @@
         </div>
       </a>
 
-      <!-- More products... -->
     </div>
-  <!-- kolom product baris 2 -->
-    <div class="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 mt-10">
-      <a href="#" class="group">
-        <div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
-          <img src="https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg" alt="Tall slender porcelain bottle with natural clay textured body and cork stopper." class="h-full w-full object-cover object-center group-hover:opacity-75">
-        </div>
-        <h3 class="mt-4 text-sm text-gray-700">black T-Shirt</h3>
-        <p class="mt-1 text-lg font-medium text-gray-900">$48</p>
-        <div class="-mt-10">
-        <button class="bg-black hover:bg-gray-600  text-white font-bold py-2 px-4 rounded ml-[155px] w-28 ">
-          Order
-        </button>
-        </div>
-      </a>
-      <a href="#" class="group">
-        <div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
-          <img src="https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-02.jpg" alt="Olive drab green insulated bottle with flared screw lid and flat top." class="h-full w-full object-cover object-center group-hover:opacity-75">
-        </div>
-        <h3 class="mt-4 text-sm text-gray-700">white T-Shirt</h3>
-        <p class="mt-1 text-lg font-medium text-gray-900">$35</p>
-        <div class="-mt-10">
-        <button class="bg-black hover:bg-gray-600  text-white font-bold py-2 px-4 rounded ml-[155px] w-28 ">
-          Order
-        </button>
-        </div>
-      </a>
-      <a href="#" class="group">
-        <div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
-          <img src="https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-03.jpg" alt="Person using a pen to cross a task off a productivity paper card." class="h-full w-full object-cover object-center group-hover:opacity-75">
-        </div>
-        <h3 class="mt-4 text-sm text-gray-700">Pink Dot T-Shirt</h3>
-        <p class="mt-1 text-lg font-medium text-gray-900">$89</p>
-        <div class="-mt-10">
-        <button class="bg-black hover:bg-gray-600  text-white font-bold py-2 px-4 rounded ml-[155px] w-28 ">
-          Order
-        </button>
-        </div>
-      </a>
-      <a href="#" class="group">
-        <div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
-          <img src="https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-04.jpg" alt="Hand holding black machined steel mechanical pencil with brass tip and top." class="h-full w-full object-cover object-center group-hover:opacity-75">
-        </div>
-        <h3 class="mt-4 text-sm text-gray-700">Pink dot T-Shirt</h3>
-        <p class="mt-1 text-lg font-medium text-gray-900">$35</p>
-        <div class="-mt-10">
-        <button class="bg-black hover:bg-gray-600  text-white font-bold py-2 px-4 rounded ml-[155px] w-28 ">
-          Order
-        </button>
-        </div>
-      </a>
-    </div>
+
 
   </div>
 </div>
 
 <!-- Footer -->
-<footer class="footer items-center p-4 bg-neutral text-neutral-content">
-  <aside class="items-center grid-flow-col">
+<footer class="footer items-center p-4 bg-white text-neutral-content">
+  <aside class="items-center grid-flow-col text-[#C2A7A7]">
     <p>ShopEasy © 2024 - All right reserved</p>
-  </aside> 
-  <nav class="grid-flow-col gap-4 md:place-self-center md:justify-self-end">
-    <a><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="fill-current"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"></path></svg>
+  </aside>
+  <nav class="grid-flow-col gap-4 md:place-self-center md:justify-self-end fill-[#C2A7A7]">
+    <a><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class=""><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"></path></svg>
     </a>
-    <a><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="fill-current"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"></path></svg></a>
-    <a><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="fill-current"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"></path></svg></a>
+    <a><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class=""><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"></path></svg></a>
+    <a><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class=""><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"></path></svg></a>
   </nav>
 </footer>
 </x-app-layout>
