@@ -20,9 +20,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/cart', function () {
-    return view('cart');
-})->name('cart');
+Route::get('/cart', [CartController::class, 'index'])->name('cart');
 
 Route::get('/detail', function () {
     return view('productDetails');
