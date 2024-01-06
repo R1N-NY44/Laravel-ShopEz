@@ -18,23 +18,16 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [ProductController::class, 'index'])->name('home');
 
-
-Route::get('/detail', function () {
-    return view('productDetails');
-});
-
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::get('/cart', [CartController::class, 'index'])->name('cart');
-
     // admin
     Route::middleware('admin')->group(function() {
         Route::get('/admin/dashboard', [ProductController::class, 'admin_dashboard'] )->name('admin.dashboard');
         Route::post('/product/store', [ProductController::class, 'store'])->name('product.store');
-        Route::get('/product/{product}/edit', [ProductController::class, 'edit'])->name('product.edit');
+        Route::get('/product-edit/{product}', [ProductController::class, 'edit'])->name('product.edit');
         Route::put('/product/{product}', [ProductController::class, 'update'])->name('product.update');
         Route::delete('/product/{product}', [ProductController::class, 'destroy'])->name('product.destroy');
     });
@@ -43,6 +36,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/product-details/{product}', [ProductController::class, 'show'])->name('product.show');
 
     // cart
+    Route::get('/cart', [CartController::class, 'index'])->name('cart');
     Route::post('/carts', [CartController::class, 'store'])->name('cart.store');
 
 });
