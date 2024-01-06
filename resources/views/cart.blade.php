@@ -1,5 +1,6 @@
 <x-app-layout>
-    <div class="w-full" style="font-family: 'Alice';">
+
+    <div class="w-full text-black" style="font-family: 'Alice';">
         <div class="mx-auto w-[1280px] mt-14 gap-10 flex justify-between">
 
             {{-- Detail Barang (Kiri)--}}
@@ -73,13 +74,13 @@
                 {{-- Daftar Detail --}}
                 <h1 class="text-3xl mb-6">Ringkasan Belanja</h1>
 
-                
+
                 {{-- Printout Logic --}}
                 <div>
                     @php
                         $total = 0;
                     @endphp
-                
+
                     @foreach ($carts as $summary)
                         <div class="mt-2 flex justify-between text-[#808080]">
                             <input hidden
@@ -89,26 +90,26 @@
                             >
                             <h1 class="text-xl">{{ $summary->product->productName }}</h1>
                             <h1 class="text-xl">Rp. {{ number_format($summary->product->productPrice * $summary->quantity, 0, ',', ',') }}</h1>
-                
+
                             @php
                                 $total += $summary->product->productPrice * $summary->quantity;
                             @endphp
                         </div>
                     @endforeach
-                
+
                     {{-- Divider --}}
                     <div class="bg-[#808080] py-[0.8px] w-full my-6"></div>
-                
+
                     {{-- Total --}}
                     <div class="flex justify-between text-[#808080]">
                         <h1 class="text-xl">Total</h1>
                         <h1 class="text-xl">Rp. {{ number_format($total, 0, ',', ',') }}</h1>
                     </div>
                 </div>
-                
-                
-                
-                
+
+
+
+
 
                 {{-- Checkout Button --}}
                 <div class="flex justify-center mt-12">
