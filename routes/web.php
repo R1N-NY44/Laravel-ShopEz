@@ -31,14 +31,16 @@ Route::middleware('auth')->group(function () {
     Route::get('/cart', [CartController::class, 'index'])->name('cart');
 
     // admin
-    Route::get('/admin/dashboard', [ProductController::class, 'admin_dashboard'] )->name('dashboard');
-
+    Route::middleware('admin')->group(function() {
+        Route::get('/admin/dashboard', [ProductController::class, 'admin_dashboard'] )->name('admin.dashboard');
+        Route::post('/product/store', [ProductController::class, 'store'])->name('product.store');
+        Route::get('/product/{product}/edit', [ProductController::class, 'edit'])->name('product.edit');
+        Route::put('/product/{product}', [ProductController::class, 'update'])->name('product.update');
+        Route::delete('/product/{product}', [ProductController::class, 'destroy'])->name('product.destroy');
+    });
+    
     // product
     Route::get('/product-details/{product}', [ProductController::class, 'show'])->name('product.show');
-    Route::post('/product/store', [ProductController::class, 'store'])->name('product.store');
-    Route::get('/product/{product}/edit', [ProductController::class, 'edit']);
-    Route::put('/product/{product}', [ProductController::class, 'update'])->name('product.update');
-    Route::delete('/product/{product}', [ProductController::class, 'destroy'])->name('product.destroy');
 
     // cart
     Route::post('/carts', [CartController::class, 'store'])->name('cart.store');
