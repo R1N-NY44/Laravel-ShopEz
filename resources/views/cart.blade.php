@@ -73,33 +73,40 @@
                 {{-- Daftar Detail --}}
                 <h1 class="text-3xl mb-6">Ringkasan Belanja</h1>
 
-                <div x-data="{ total: 0 }">
+                
+                {{-- Printout Logic --}}
+                <div>
+                    @php
+                        $total = 0;
+                    @endphp
+                
                     @foreach ($carts as $summary)
                         <div class="mt-2 flex justify-between text-[#808080]">
+                            <input hidden
+                                type="number"
+                                value="{{ $summary->product->productPrice * $summary->quantity }}"
+                                oninput="updateTotal()"
+                            >
                             <h1 class="text-xl">{{ $summary->product->productName }}</h1>
-                            <h1 class="text-xl">Rp. {{ $summary->product->productPrice * $summary->quantity}}</h1>
+                            <h1 class="text-xl">Rp. {{ number_format($summary->product->productPrice * $summary->quantity, 0, ',', ',') }}</h1>
+                
+                            @php
+                                $total += $summary->product->productPrice * $summary->quantity;
+                            @endphp
                         </div>
-                        <script>
-                            // Update total menggunakan Alpine.js
-                            Alpine.data('total', () => {
-                                return {
-                                    total: (parseFloat(total) + {{ $summary->product->productPrice * $summary->quantity }}).toFixed(2),
-                                };
-                            });
-                        </script>
                     @endforeach
                 
                     {{-- Divider --}}
                     <div class="bg-[#808080] py-[0.8px] w-full my-6"></div>
                 
                     {{-- Total --}}
-                    <div class="flex justify-between text-[#808080] ">
+                    <div class="flex justify-between text-[#808080]">
                         <h1 class="text-xl">Total</h1>
-                        <h1 class="text-xl" x-text="'Rp. ' + total"></h1>
+                        <h1 class="text-xl">Rp. {{ number_format($total, 0, ',', ',') }}</h1>
                     </div>
                 </div>
                 
-                <script src="https://cdn.jsdelivr.net/npm/alpinejs@2"></script>
+                
                 
                 
 
