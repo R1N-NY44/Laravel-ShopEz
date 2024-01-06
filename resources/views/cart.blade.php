@@ -69,53 +69,47 @@
 
             {{-- Ringkasan belanja (Kanan)--}}
             <div class="w-[480px]">
-            <div class=" mt-14 p-8 bg-white shadow-lg border border-[#f0f0f0] rounded-xl">
-                {{-- Daftar Detail --}}
-                <h1 class="text-3xl mb-6">Ringkasan Belanja</h1>
+                <div class=" mt-14 p-8 bg-white shadow-lg border border-[#f0f0f0] rounded-xl">
+                    {{-- Daftar Detail --}}
+                    <h1 class="text-3xl mb-6">Ringkasan Belanja</h1>
 
-                
-                {{-- Printout Logic --}}
-                <div>
-                    @php
-                        $total = 0;
-                    @endphp
-                
-                    @foreach ($carts as $summary)
-                        <div class="mt-2 flex justify-between text-[#808080]">
-                            <input hidden
-                                type="number"
-                                value="{{ $summary->product->productPrice * $summary->quantity }}"
-                                oninput="updateTotal()"
-                            >
-                            <h1 class="text-xl">{{ $summary->product->productName }}</h1>
-                            <h1 class="text-xl">Rp. {{ number_format($summary->product->productPrice * $summary->quantity, 0, ',', ',') }}</h1>
-                
-                            @php
-                                $total += $summary->product->productPrice * $summary->quantity;
-                            @endphp
+                    
+                    {{-- Printout Logic --}}
+                    <div>
+                        @php
+                            $total = 0;
+                        @endphp
+                    
+                        @foreach ($carts as $summary)
+                            <div class="mt-2 flex justify-between text-[#808080]">
+                                <input hidden
+                                    type="number"
+                                    value="{{ $summary->product->productPrice * $summary->quantity }}"
+                                    oninput="updateTotal()"
+                                >
+                                <h1 class="text-xl">{{ $summary->product->productName }}</h1>
+                                <h1 class="text-xl">Rp. {{ number_format($summary->product->productPrice * $summary->quantity, 2, ',', ',') }}</h1>
+                    
+                                @php $total += $summary->product->productPrice * $summary->quantity; @endphp
+                            </div>
+                        @endforeach
+                    
+                        {{-- Divider --}}
+                        <div class="bg-[#808080] py-[0.8px] w-full my-6"></div>
+                    
+                        {{-- Total --}}
+                        <div class="flex justify-between text-[#808080]">
+                            <h1 class="text-xl">Total</h1>
+                            <h1 class="text-xl">Rp. {{ number_format($total, 2, ',', ',') }}</h1>
                         </div>
-                    @endforeach
-                
-                    {{-- Divider --}}
-                    <div class="bg-[#808080] py-[0.8px] w-full my-6"></div>
-                
-                    {{-- Total --}}
-                    <div class="flex justify-between text-[#808080]">
-                        <h1 class="text-xl">Total</h1>
-                        <h1 class="text-xl">Rp. {{ number_format($total, 0, ',', ',') }}</h1>
                     </div>
-                </div>
-                
-                
-                
-                
+                    
+                    {{-- Checkout Button --}}
+                    <div class="flex justify-center mt-12">
+                        <button class="bg-[#C4A7A7] text-white text-2xl w-full py-3">Beli ({{ $productCount }})</button>
+                    </div>
 
-                {{-- Checkout Button --}}
-                <div class="flex justify-center mt-12">
-                    <button class="bg-[#C4A7A7] text-white text-2xl w-full py-3">Beli ({{ $productCount }})</button>
                 </div>
-
-            </div>
             </div>
             {{-- Ringkasan belanja --}}
 
