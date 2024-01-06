@@ -13,6 +13,13 @@ class ProductController extends Controller
      */
     public function index()
     {
+        return view('dashboard', [
+            'products' => Product::all()
+        ]);
+    }
+    
+    public function admin_dashboard()
+    {
         return view('Admin.dashboard', [
             'data_produk' => Product::all()
         ]);
@@ -22,6 +29,14 @@ class ProductController extends Controller
      * Show the form for creating a new resource.
      */
     public function create(Request $request)
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
     {
         $createProduct = $request->validate([
             'productName' => 'required|max:255',
@@ -37,14 +52,6 @@ class ProductController extends Controller
         Product::create($createProduct);
 
         return redirect()->back()->with('success', 'Product berhasil ditambahkan');
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
     }
 
     /**

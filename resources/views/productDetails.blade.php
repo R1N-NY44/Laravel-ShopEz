@@ -101,7 +101,7 @@
                         <label  for="SizeXXL" class="peer-checked/SizeXXL:bg-[#C4A7A7] text-lg px-4 text-white bg-gray-400  rounded-full">XXL</label>
                     </div>
 
-                    <form action="{{ route('cart.create') }}" method="post">
+                    <form action="{{ route('cart.store') }}" method="post">
                         @csrf
                         {{-- Menampilkan pilihan ukuran dalam textarea --}}
                         <textarea class="w-full h-32 rounded-lg border-[#808080] text-[#808080] pl-1" name="purchaseNotes" id="" placeholder="Catatan :" x-text="'Catatan : ' + selectedSize"></textarea>

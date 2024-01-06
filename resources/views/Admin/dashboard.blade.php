@@ -11,7 +11,7 @@
             <div class="bg-white overflow-hidden shadow-lg sm:rounded-xl">
                 <div class="p-6 text-gray-900">
 
-                    <form action="{{ route('product.create') }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('product.store') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="flex gap-4">
                             <div class="w-[620px]">

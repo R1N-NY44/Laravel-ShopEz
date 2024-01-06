@@ -42,7 +42,7 @@ class AuthenticatedSessionController extends Controller
         if(Auth::attempt($credentials)){
             $request->session()->regenerate();
 
-            return redirect()->intended( auth()->user()->role != 'admin' ? '/' : '/admin/dashboard');
+            return redirect()->intended( (auth()->user()->role != 'admin') ? '/' : '/admin/dashboard');
         }
 
         return back()->with('loginErr', 'Login failed, please check your email and password!');
