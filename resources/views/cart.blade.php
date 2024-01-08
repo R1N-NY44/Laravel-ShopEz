@@ -10,7 +10,14 @@
                     <input type="checkbox" class="p-3 checkbox rounded-full border-[#C4A7A7] checked:border-[#C4A7A7]">
                     <div class="flex justify-between w-full">
                         <h1 class="text-2xl text-[#808080]">Pilih Semua</h1>
-                        <h1 class="text-2xl text-[#C4A7A7] mr-2">Hapus Semua</h1>
+
+                        {{-- hapus semua isi cart --}}
+                        <form action="{{ route('cart.destroyAll') }}" method="post">
+                            @csrf
+                            @method('delete')
+                            <button type="submit" class="text-2xl text-[#C4A7A7] mr-2">Hapus Semua</button>
+                        </form>
+                        
                     </div>
                 </div>
                 {{-- Divider --}}
@@ -36,7 +43,14 @@
                             <div class="flex mr-2 items-center relative">
                                 <h1 class="ml-8 text-xl ">Pindahkan Ke Wishlist</h1>
                                 <h1 class="text-[#9d9d9d] text-2xl mx-6 -mt-1">|</h1>
-                                <img class="mr-6" src="trash.svg" alt="">
+
+                                {{-- hapus satu barang dalam cart --}}
+                                <form action="{{ route('cart.destroy', $cart->id) }}" method="post">
+                                    @csrf
+                                    @method('delete')
+                                    <button type="submit" title="Delete"><img class="mr-6" src="trash.svg" alt=""></button>
+                                </form>
+
                                 <div class="-mt-3 h-3 flex gap-6">
                                     <button x-on:click="count{{ $cart->id }} > 1 ? count{{ $cart->id }}-- : null">
                                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
