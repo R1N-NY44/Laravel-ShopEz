@@ -13,14 +13,19 @@ class ProductController extends Controller
      */
     public function index()
     {
+        $product = Product::latest();
+        if(request('search')){
+            $product->where('productName', 'like', '%'. request('search') .'%');
+        }
+        
         return view('dashboard', [
-            'products' => Product::all()
+            'products' => $product->get()
         ]);
     }
     
     public function admin_dashboard()
     {
-        return view('Admin.dashboard', [
+                return view('Admin.dashboard', [
             'data_produk' => Product::all()
         ]);
     }
